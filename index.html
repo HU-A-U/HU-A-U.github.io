@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hu-a-u.com/2019/04/25/自动化部署docker容器/">
+    <link itemprop="mainEntityOfPage" href="http://hu-a-u.com/2019/05/23/自动化部署docker容器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="胡泽蒙">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/25/自动化部署docker容器/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/05/23/自动化部署docker容器/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-25T14:56:36+08:00">
-                2019-04-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-23T16:28:00+08:00">
+                2019-05-23
               </time>
             
           </span>
@@ -344,7 +344,7 @@
 
           
           
-             <span id="/2019/04/25/自动化部署docker容器/" class="leancloud_visitors" data-flag-title>
+             <span id="/2019/05/23/自动化部署docker容器/" class="leancloud_visitors" data-flag-title>
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -370,7 +370,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  31
+                  25
                 </span>
               
 
@@ -409,16 +409,14 @@
       
         
           
-          ###自动化部署docker容器
-
-部署环境Linux(centos|ubuntu)
+          ###mitmproxy+celery+docker部署环境Linux(centos|ubuntu)
 概述由于业务需求，一个用户一个容器
 
 
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/25/自动化部署docker容器/#more" rel="contents">
+            <a class="btn" href="/2019/05/23/自动化部署docker容器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -984,181 +982,6 @@ mysql地址
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hu-a-u.com/2019/04/01/nginx+uwsgi部署python应用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="胡泽蒙">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/lucky_dog.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/01/nginx+uwsgi部署python应用/" itemprop="url">ubuntu下快速安装python3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-10T11:22:18+08:00">
-                2019-05-10
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/04/01/nginx+uwsgi部署python应用/" class="leancloud_visitors" data-flag-title="ubuntu下快速安装python3">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  446
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概述在Linux上使用nginx
-服务器运行环境：ubuntu18.04
-安装方式简介:不影响已有的python其他版本环境
-增量式安装
-完全隔离的沙箱环境
-基本环境(便于后面的编译成功)中间可能有多余空格，去除下再运行，一般都能安装成功，如果不能可以先更新下sudo apt-get update
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/01/nginx+uwsgi部署python应用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hu-a-u.com/2019/03/01/ubuntu下python3的安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1536,7 +1359,7 @@ mysql地址
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1685,7 +1508,7 @@ setInterval("createtime()",250);
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>小站共
-    <span title="Site words total count">1.7k</span>字
+    <span title="Site words total count">1.3k</span>字
   
 </div>
 

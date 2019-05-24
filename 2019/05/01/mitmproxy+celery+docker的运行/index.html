@@ -103,7 +103,7 @@
 <meta property="og:description" content="概述本文只是关于在docker中运行mitmproxy和celery的过程； 需求使用mitmproxy做中间人代理获取网站的请求和响应，以及使用celery对截取的请求进行过滤解析后存库(关于mitmproxy和celery请见前面两篇) 使用docker的原因：1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到cele">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://hu-a-u.com/images/daocloud_task.png">
-<meta property="og:updated_time" content="2019-05-24T05:56:04.694Z">
+<meta property="og:updated_time" content="2019-05-24T06:05:41.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mitmproxy+celery+docker的运行">
 <meta name="twitter:description" content="概述本文只是关于在docker中运行mitmproxy和celery的过程； 需求使用mitmproxy做中间人代理获取网站的请求和响应，以及使用celery对截取的请求进行过滤解析后存库(关于mitmproxy和celery请见前面两篇) 使用docker的原因：1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到cele">
@@ -333,7 +333,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-24T13:56:04+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-24T14:05:41+08:00">
                 2019-05-24
               </time>
             
@@ -429,7 +429,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FROM python:3.7 </span><br><span class="line">ADD requirements.txt /tmp/requirements.txt</span><br><span class="line">RUN pip install -r /tmp/requirements.txt</span><br><span class="line">RUN mkdir /code</span><br><span class="line">WORKDIR /code</span><br><span class="line">COPY . /code</span><br><span class="line">COPY docker-entrypoint.sh docker-entrypoint.sh</span><br><span class="line">RUN chmod +x docker-entrypoint.sh</span><br><span class="line">RUN apt-get install libfontconfig</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line"></span><br><span class="line">CMD /code/docker-entrypoint.sh</span><br></pre></td></tr></table></figure>
 <p>使用EXPOSE命令将容器的运行端口8080暴露出来<br>使用CMD命令运行docker-entrypoint.sh启动文件，内容如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/mitmdump -s /code/start_script.py</span><br></pre></td></tr></table></figure>
-<p>创建镜像，我使用的是daocloud平台打包镜像，比较方便，关联GitHub仓库就可以直接打包，有新的提交就会自动重新打包一个版本<br><img src="/images/daocloud_task.png" alt></p>
+<p>创建镜像，我使用的是daocloud平台打包镜像，比较方便，关联GitHub仓库就可以直接打包，有新的提交就会自动重新打包一个版本<br><img src="/images/daocloud_task.png" alt="daocloud上打包执行的过程"></p>
 
       
     </div>

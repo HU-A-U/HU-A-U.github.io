@@ -62,8 +62,6 @@
             
             <tag> python </tag>
             
-            <tag> docker </tag>
-            
             <tag> celery </tag>
             
             <tag> mitmproxy </tag>
@@ -97,7 +95,7 @@
       
       <categories>
           
-          <category> Diary </category>
+          <category> 杂记 </category>
           
       </categories>
       
@@ -122,16 +120,14 @@
       
       <categories>
           
-          <category> Diary </category>
+          <category> python </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> python </tag>
-            
-            <tag> ubuntu </tag>
+            <tag> Linux </tag>
             
         </tags>
       
@@ -149,7 +145,7 @@
       
       <categories>
           
-          <category> Diary </category>
+          <category> python </category>
           
       </categories>
       
@@ -157,8 +153,6 @@
         <tags>
             
             <tag> python </tag>
-            
-            <tag> pip </tag>
             
         </tags>
       

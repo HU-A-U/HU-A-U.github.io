@@ -28,6 +28,16 @@
 <meta name="theme-color" content="#222">
 
 
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "f64f5a5c"
+    });
+  daovoice('update');
+  </script>
+
+
+
 
 
 
@@ -152,6 +162,9 @@
 
 
 </head>
+
+<!-- 页面点击小红心 -->
+
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -408,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  503
+                  501
                 </span>
               
 
@@ -451,7 +464,7 @@
 增量式安装
 完全隔离的沙箱环境
 </code></pre><h3 id="基本环境-便于后面的编译成功"><a href="#基本环境-便于后面的编译成功" class="headerlink" title="基本环境(便于后面的编译成功)"></a>基本环境(便于后面的编译成功)</h3><p>中间可能有多余空格，去除下再运行，一般都能安装成功，如果不能可以先更新下sudo apt-get update</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install zlib1g-dev libbz2-dev libssl-dev libncurses5-dev libsqlite3-dev </span><br><span class="line">libreadline-dev tk-dev libgdbm-dev libdb-dev libpcap-dev xz-utils libexpat1-dev </span><br><span class="line">liblzma-dev libffi-dev libc6-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install zlib1g-<span class="built_in">dev</span> libbz2-<span class="built_in">dev</span> libssl-<span class="built_in">dev</span> libncurses5-<span class="built_in">dev</span> libsqlite3-<span class="built_in">dev</span> </span><br><span class="line">libreadline-<span class="built_in">dev</span> tk-<span class="built_in">dev</span> libgdbm-<span class="built_in">dev</span> libdb-<span class="built_in">dev</span> libpcap-<span class="built_in">dev</span> xz-utils libexpat1-<span class="built_in">dev</span> </span><br><span class="line">liblzma-<span class="built_in">dev</span> libffi-<span class="built_in">dev</span> libc6-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
 <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>在python官网下载指定平台下的python3.7.1的环境</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz</span><br></pre></td></tr></table></figure>
 <p>下载完成后，所在目录下会有 Python-3.7.1.tgz 的文件</p>
@@ -459,19 +472,19 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvzf Python-3.7.1.tgz</span><br></pre></td></tr></table></figure>
 <p>所在目录下会有 Python-3.7.1 的文件夹</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入文件夹Python-3.7.1,进行配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd Python-3.7.1</span><br><span class="line">./configure --with-ssl --prefix=/usr/local/python3</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> Python-3.7.1</span><br><span class="line"><span class="string">./configure</span> <span class="params">--with-ssl</span> <span class="params">--prefix=/usr/local/python3</span></span><br></pre></td></tr></table></figure>
 <p>编译、安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span></span><br><span class="line"><span class="built_in">make</span> install</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>执行后可能会报错，请参考<a href="https://blog.csdn.net/jpch89/article/details/81813267" target="_blank" rel="noopener">https://blog.csdn.net/jpch89/article/details/81813267</a></p>
 </blockquote>
 <h3 id="删除软链"><a href="#删除软链" class="headerlink" title="删除软链"></a>删除软链</h3><p>先执行查看版本，如果有则证明软连接已经存在，先将其删除再重新建立</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># python3 -V</span><br><span class="line">Python 3.5.2</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># pip3 -V</span><br><span class="line">The program &apos;pip3&apos; is currently not installed. You can install it by typing:apt install python3-pip</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">python3</span> <span class="selector-tag">-V</span></span><br><span class="line"><span class="selector-tag">Python</span> 3<span class="selector-class">.5</span><span class="selector-class">.2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pip3 -V</span></span><br><span class="line">The program <span class="string">'pip3'</span> <span class="keyword">is</span> currently <span class="keyword">not</span> installed. You can install <span class="literal">it</span> <span class="keyword">by</span> typing:apt install python3-pip</span><br></pre></td></tr></table></figure>
 <p>可见我的机器上的默认的python3的版本为3.5，pip3没有安装</p>
 <p>删除软链</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># rm -rf /usr/bin/python3</span><br><span class="line"># rm -rf /usr/bin/pip3</span><br></pre></td></tr></table></figure>
-<h3 id="建立新的指向python3-7的软链"><a href="#建立新的指向python3-7的软链" class="headerlink" title="建立新的指向python3.7的软链"></a>建立新的指向python3.7的软链</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#添加python3的软链接</span><br><span class="line">ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3</span><br><span class="line">#添加 pip3 的软链接</span><br><span class="line">ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># rm -rf /usr/bin/python3</span></span><br><span class="line"><span class="meta"># rm -rf /usr/bin/pip3</span></span><br></pre></td></tr></table></figure>
+<h3 id="建立新的指向python3-7的软链"><a href="#建立新的指向python3-7的软链" class="headerlink" title="建立新的指向python3.7的软链"></a>建立新的指向python3.7的软链</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加python3的软链接</span></span><br><span class="line">ln -s <span class="regexp">/usr/</span>local<span class="regexp">/python3/</span>bin<span class="regexp">/python3.7 /u</span>sr<span class="regexp">/bin/</span>python3</span><br><span class="line"><span class="comment">#添加 pip3 的软链接</span></span><br><span class="line">ln -s <span class="regexp">/usr/</span>local<span class="regexp">/python3/</span>bin<span class="regexp">/pip3.7 /u</span>sr<span class="regexp">/bin/</span>pip3</span><br></pre></td></tr></table></figure>
 <h3 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># python3 -V</span><br><span class="line">Python 3.7.1</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># pip3 -V</span><br><span class="line">pip 10.0.1 from /usr/local/python3/lib/python3.7/site-packages/pip (python 3.7)</span><br></pre></td></tr></table></figure>
 <p>至此安装成功。</p>
@@ -482,12 +495,25 @@
     
     
 
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
     
 
     
       <div>
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div></div>
+  <div>打赏一杯茶🍵</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
     <span>打赏</span>
   </button>
@@ -1425,6 +1451,13 @@ setInterval("createtime()",250);
   
 
   
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
 
 </body>
 </html>

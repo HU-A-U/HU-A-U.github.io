@@ -28,6 +28,16 @@
 <meta name="theme-color" content="#222">
 
 
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "f64f5a5c"
+    });
+  daovoice('update');
+  </script>
+
+
+
 
 
 
@@ -94,18 +104,18 @@
 
 
 
-<meta name="description" content="今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting 不支持语言环境，报错如下： 123456789root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenvTraceback (most recent call last):  File &amp;quot">
+<meta name="description" content="今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting 不支持语言环境，报错如下： 123456789root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenvTraceback (most recent call last):  File &quot;/usr">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小记--阿里云pip配置虚拟环境报错">
 <meta property="og:url" content="http://hu-a-u.com/2019/03/01/小记--阿里云pip配置虚拟环境报错/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting 不支持语言环境，报错如下： 123456789root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenvTraceback (most recent call last):  File &amp;quot">
+<meta property="og:description" content="今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting 不支持语言环境，报错如下： 123456789root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenvTraceback (most recent call last):  File &quot;/usr">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-05-28T02:27:57.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小记--阿里云pip配置虚拟环境报错">
-<meta name="twitter:description" content="今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting 不支持语言环境，报错如下： 123456789root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenvTraceback (most recent call last):  File &amp;quot">
+<meta name="twitter:description" content="今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting 不支持语言环境，报错如下： 123456789root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenvTraceback (most recent call last):  File &quot;/usr">
 
 
 
@@ -152,6 +162,9 @@
 
 
 </head>
+
+<!-- 页面点击小红心 -->
+
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -408,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  159
+                  151
                 </span>
               
 
@@ -447,7 +460,7 @@
       
         <p>今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting</p>
 <p>不支持语言环境，报错如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenv</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/bin/pip3&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    sys.exit(main())</span><br><span class="line">  File &quot;/usr/lib/python3/dist-packages/pip/__init__.py&quot;, line 215, in main</span><br><span class="line">    locale.setlocale(locale.LC_ALL, &apos;&apos;)</span><br><span class="line">  File &quot;/usr/lib/python3.5/locale.py&quot;, line 594, in setlocale</span><br><span class="line">    return _setlocale(category, locale)</span><br><span class="line">locale.Error: unsupported locale setting</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@iZuf6eh47kp5ew16h2mywqZ:~<span class="comment"># sudo pip3 install virtualenv</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/bin/pip3"</span>, line <span class="number">11</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    sys.<span class="keyword">exit</span>(main())</span><br><span class="line">  File <span class="string">"/usr/lib/python3/dist-packages/pip/__init__.py"</span>, line <span class="number">215</span>, <span class="keyword">in</span> main</span><br><span class="line">    locale.setlocale(locale.LC_ALL, <span class="string">''</span>)</span><br><span class="line">  File <span class="string">"/usr/lib/python3.5/locale.py"</span>, line <span class="number">594</span>, <span class="keyword">in</span> setlocale</span><br><span class="line">    return _setlocale(category, locale)</span><br><span class="line">locale.Error: unsupported locale setting</span><br></pre></td></tr></table></figure>
 <p>解决办法很简单，设置语言就好了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LC_ALL=&quot;en_US.UTF-8&quot;</span><br><span class="line">export LC_CTYPE=&quot;en_US.UTF-8&quot;</span><br></pre></td></tr></table></figure>
 <p>执行上面这两句就OK了，后面就可以继续pip安装了。</p>
@@ -458,12 +471,25 @@
     
     
 
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
     
 
     
       <div>
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div></div>
+  <div>打赏一杯茶🍵</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
     <span>打赏</span>
   </button>
@@ -1372,6 +1398,13 @@ setInterval("createtime()",250);
   
 
   
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
 
 </body>
 </html>

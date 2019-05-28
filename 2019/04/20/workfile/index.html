@@ -28,6 +28,16 @@
 <meta name="theme-color" content="#222">
 
 
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "f64f5a5c"
+    });
+  daovoice('update');
+  </script>
+
+
+
 
 
 
@@ -152,6 +162,9 @@
 
 
 </head>
+
+<!-- 页面点击小红心 -->
+
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -475,11 +488,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -d --name chrome_for_yzf -p 5902:5900 -p 4442:4444 selenium/standalone-chrome-debug</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>下载镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull selenium/standalone-chrome-debug</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> docker pull selenium/standalone-chrome-<span class="literal">debug</span></span><br></pre></td></tr></table></figure>
 <p>说明：standalone-chrome-debug 镜像是带有vnc server </p>
 </li>
 <li><p>运行容器(–name后为容器的名称,-d 守护进程运行,-p 由容器露出的8080端口,映射到宿主机的8081端口)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name your_app_name -p 8081:8080 -d selenium/standalone-chrome-debug</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">run</span> <span class="comment">--name your_app_name -p 8081:8080 -d selenium/standalone-chrome-debug</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <ol start="4">
@@ -492,10 +505,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql_service -e MYSQL_ROOT_PASSWORD=your_pwd -d daocloud.io/library/mysql</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用其他的docker容器连接docker的MySQL服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name some_app --link your_mysql_name:mysql -p 8080:8080 -d daocloud.io/library/mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">run</span> <span class="comment">--name some_app --link your_mysql_name:mysql -p 8080:8080 -d daocloud.io/library/mysql</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将MySQL容器内的数据持久化到宿主机上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql --privileged=true -v /home/docker_mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=cicjust_proxy -d daocloud.io/library/mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> --name mysql <span class="attribute">--privileged</span>=<span class="literal">true</span> -v /home/docker_mysql/data:/var/lib/mysql -e <span class="attribute">MYSQL_ROOT_PASSWORD</span>=cicjust_proxy -d daocloud.io/library/mysql</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
@@ -507,12 +520,25 @@
     
     
 
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
     
 
     
       <div>
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div></div>
+  <div>打赏一杯茶🍵</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
     <span>打赏</span>
   </button>
@@ -1425,6 +1451,13 @@ setInterval("createtime()",250);
   
 
   
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
 
 </body>
 </html>

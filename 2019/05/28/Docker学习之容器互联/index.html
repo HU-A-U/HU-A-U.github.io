@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Redis,">
 
 
 
@@ -94,14 +94,20 @@
 
 
 
-<meta name="keywords" content="男">
-<meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://hu-a-u.com/archives/2019/05/index.html">
+<meta name="description" content="概述由于业务需要，需要将现有的服务迁移到阿里云上，该服务使用容器运行，外部需要连接一个redis进行暂存数据；所以使用另一个容器运行一个redis，本文就是关于现有容器服务互联到另外一个redis容器，其他数据库mysql等也是类似的做法。 环境CentOS 7.6 下载redis镜像在 DockerHub https://hub.docker.com/_/redis1docker pull re">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker学习之--link容器互联">
+<meta property="og:url" content="http://hu-a-u.com/2019/05/28/Docker学习之容器互联/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="概述由于业务需要，需要将现有的服务迁移到阿里云上，该服务使用容器运行，外部需要连接一个redis进行暂存数据；所以使用另一个容器运行一个redis，本文就是关于现有容器服务互联到另外一个redis容器，其他数据库mysql等也是类似的做法。 环境CentOS 7.6 下载redis镜像在 DockerHub https://hub.docker.com/_/redis1docker pull re">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://hu-a-u.com/2019/05/28/Docker学习之容器互联/redis_host.png">
+<meta property="og:updated_time" content="2019-05-28T01:49:00.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="Docker学习之--link容器互联">
+<meta name="twitter:description" content="概述由于业务需要，需要将现有的服务迁移到阿里云上，该服务使用容器运行，外部需要连接一个redis进行暂存数据；所以使用另一个容器运行一个redis，本文就是关于现有容器服务互联到另外一个redis容器，其他数据库mysql等也是类似的做法。 环境CentOS 7.6 下载redis镜像在 DockerHub https://hub.docker.com/_/redis1docker pull re">
+<meta name="twitter:image" content="http://hu-a-u.com/2019/05/28/Docker学习之容器互联/redis_host.png">
 
 
 
@@ -131,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://hu-a-u.com/archives/2019/05/">
+  <link rel="canonical" href="http://hu-a-u.com/2019/05/28/Docker学习之容器互联/">
 
 
 
 
 
-  <title>归档 | </title>
+  <title>Docker学习之--link容器互联 | </title>
   
 
 
@@ -156,7 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -280,177 +286,261 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hu-a-u.com/2019/05/28/Docker学习之容器互联/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="胡泽蒙">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/lucky_dog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Docker学习之--link容器互联</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-28T09:49:00+08:00">
+                2019-05-28
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 7 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
+             <span id="/2019/05/28/Docker学习之容器互联/" class="leancloud_visitors" data-flag-title="Docker学习之--link容器互联">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/28/Docker学习之容器互联/" itemprop="url">
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">Docker学习之--link容器互联</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  279
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-28T08:50:20+08:00" content="2019-05-28">
-          05-28
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/27/小记-关于mitmproxy的代理连接被重置的问题/" itemprop="url">
-              
-                <span itemprop="name">小记--关于mitmproxy的代理连接被重置的问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-27T14:41:38+08:00" content="2019-05-27">
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/24/Docker中运行mitiproxy-celery/" itemprop="url">
-              
-                <span itemprop="name">Docker中运行mitiproxy+celery</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-24T14:40:52+08:00" content="2019-05-24">
-          05-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>由于业务需要，需要将现有的服务迁移到阿里云上，该服务使用容器运行，外部需要连接一个redis进行暂存数据；<br>所以使用另一个容器运行一个redis，本文就是关于现有容器服务互联到另外一个redis容器，其他数据库mysql等也是类似的做法。</p>
+<h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>CentOS 7.6</p>
+<h3 id="下载redis镜像"><a href="#下载redis镜像" class="headerlink" title="下载redis镜像"></a>下载redis镜像</h3><p>在 DockerHub <a href="https://hub.docker.com/_/redis" target="_blank" rel="noopener">https://hub.docker.com/_/redis</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis</span><br></pre></td></tr></table></figure></p>
+<h3 id="运行redis镜像"><a href="#运行redis镜像" class="headerlink" title="运行redis镜像"></a>运行redis镜像</h3><p>由于是容器之间的互联，所以就不做端口映射，redis容器默认运行在6379端口<br>启动命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name [redis容器名称] -d [镜像名]</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改服务中的redis的连接地址"><a href="#修改服务中的redis的连接地址" class="headerlink" title="修改服务中的redis的连接地址"></a>修改服务中的redis的连接地址</h3><p>修改我的已有服务配置文件中的redis地址<br><img src="/2019/05/28/Docker学习之容器互联/redis_host.png" alt></p>
+<h3 id="使用–link参数连接redis"><a href="#使用–link参数连接redis" class="headerlink" title="使用–link参数连接redis"></a>使用–link参数连接redis</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name test_proxy --link [redis容器名称]:aliyun_redis -p 8888:8080 -d [服务镜像]</span><br></pre></td></tr></table></figure>
+<p>其中 –link 后面冒号左右两边分别代表 已在运行的redis容器名称或id 和 服务里的redis地址名称；<br>直接将正在运行的redis服务映射到服务里面的redis地址.</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/24/Docker学习之Dockerfile/" itemprop="url">
-              
-                <span itemprop="name">Docker学习之Dockerfile</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-24T14:33:58+08:00" content="2019-05-24">
-          05-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="胡泽蒙 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="胡泽蒙 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="胡泽蒙 比特币">
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"><i class="fa fa-tag"></i> Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/27/小记-关于mitmproxy的代理连接被重置的问题/" rel="next" title="小记--关于mitmproxy的代理连接被重置的问题">
+                <i class="fa fa-chevron-left"></i> 小记--关于mitmproxy的代理连接被重置的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -458,6 +548,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -478,8 +572,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -599,6 +702,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境"><span class="nav-number">1.1.</span> <span class="nav-text">环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载redis镜像"><span class="nav-number">2.</span> <span class="nav-text">下载redis镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行redis镜像"><span class="nav-number">3.</span> <span class="nav-text">运行redis镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改服务中的redis的连接地址"><span class="nav-number">4.</span> <span class="nav-text">修改服务中的redis的连接地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用–link参数连接redis"><span class="nav-number">5.</span> <span class="nav-text">使用–link参数连接redis</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -789,6 +908,10 @@ setInterval("createtime()",250);
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

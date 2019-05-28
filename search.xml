@@ -20,6 +20,8 @@
       
         <tags>
             
+            <tag> Docker </tag>
+            
             <tag> Redis </tag>
             
         </tags>
@@ -111,33 +113,6 @@
     
     
     <entry>
-      <title>小记--阿里云pip配置虚拟环境报错</title>
-      <link href="/2019/03/01/%E5%B0%8F%E8%AE%B0--%E9%98%BF%E9%87%8C%E4%BA%91pip%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8A%A5%E9%94%99/"/>
-      <url>/2019/03/01/%E5%B0%8F%E8%AE%B0--%E9%98%BF%E9%87%8C%E4%BA%91pip%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8A%A5%E9%94%99/</url>
-      
-        <content type="html"><![CDATA[<p>今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting</p><p>不支持语言环境，报错如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenv</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/bin/pip3&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    sys.exit(main())</span><br><span class="line">  File &quot;/usr/lib/python3/dist-packages/pip/__init__.py&quot;, line 215, in main</span><br><span class="line">    locale.setlocale(locale.LC_ALL, &apos;&apos;)</span><br><span class="line">  File &quot;/usr/lib/python3.5/locale.py&quot;, line 594, in setlocale</span><br><span class="line">    return _setlocale(category, locale)</span><br><span class="line">locale.Error: unsupported locale setting</span><br></pre></td></tr></table></figure><p>解决办法很简单，设置语言就好了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LC_ALL=&quot;en_US.UTF-8&quot;</span><br><span class="line">export LC_CTYPE=&quot;en_US.UTF-8&quot;</span><br></pre></td></tr></table></figure><p>执行上面这两句就OK了，后面就可以继续pip安装了。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Diary </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-            <tag> pip </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ubuntu下安装python3</title>
       <link href="/2019/03/01/ubuntu%E4%B8%8Bpython3%E7%9A%84%E5%AE%89%E8%A3%85/"/>
       <url>/2019/03/01/ubuntu%E4%B8%8Bpython3%E7%9A%84%E5%AE%89%E8%A3%85/</url>
@@ -157,6 +132,33 @@
             <tag> python </tag>
             
             <tag> ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小记--阿里云pip配置虚拟环境报错</title>
+      <link href="/2019/03/01/%E5%B0%8F%E8%AE%B0--%E9%98%BF%E9%87%8C%E4%BA%91pip%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8A%A5%E9%94%99/"/>
+      <url>/2019/03/01/%E5%B0%8F%E8%AE%B0--%E9%98%BF%E9%87%8C%E4%BA%91pip%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8A%A5%E9%94%99/</url>
+      
+        <content type="html"><![CDATA[<p>今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting</p><p>不支持语言环境，报错如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@iZuf6eh47kp5ew16h2mywqZ:~# sudo pip3 install virtualenv</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/bin/pip3&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    sys.exit(main())</span><br><span class="line">  File &quot;/usr/lib/python3/dist-packages/pip/__init__.py&quot;, line 215, in main</span><br><span class="line">    locale.setlocale(locale.LC_ALL, &apos;&apos;)</span><br><span class="line">  File &quot;/usr/lib/python3.5/locale.py&quot;, line 594, in setlocale</span><br><span class="line">    return _setlocale(category, locale)</span><br><span class="line">locale.Error: unsupported locale setting</span><br></pre></td></tr></table></figure><p>解决办法很简单，设置语言就好了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LC_ALL=&quot;en_US.UTF-8&quot;</span><br><span class="line">export LC_CTYPE=&quot;en_US.UTF-8&quot;</span><br></pre></td></tr></table></figure><p>执行上面这两句就OK了，后面就可以继续pip安装了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Diary </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> pip </tag>
             
         </tags>
       

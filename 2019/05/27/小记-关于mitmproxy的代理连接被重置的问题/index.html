@@ -93,7 +93,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="mitmproxy,">
 
 
 
@@ -104,17 +104,18 @@
 
 
 
-<meta name="description" content="不以物喜 不以己悲">
+<meta name="description" content="概述在浏览器设置proxy的代理之后，访问网页显示连接被重置，然后查看日志，报错信息如下： 1234567[root@procy ~]# docker logs test_proxyLoading script /code/start_script.pyProxy server listening at http://*:8080172.104.123.101:58074: clientconne">
+<meta name="keywords" content="mitmproxy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小记--关于mitmproxy的代理连接被重置的问题">
 <meta property="og:url" content="https://hu-a-u.com/2019/05/27/小记-关于mitmproxy的代理连接被重置的问题/index.html">
 <meta property="og:site_name" content="HU&#39;s Blog">
-<meta property="og:description" content="不以物喜 不以己悲">
+<meta property="og:description" content="概述在浏览器设置proxy的代理之后，访问网页显示连接被重置，然后查看日志，报错信息如下： 1234567[root@procy ~]# docker logs test_proxyLoading script /code/start_script.pyProxy server listening at http://*:8080172.104.123.101:58074: clientconne">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-27T06:41:38.427Z">
+<meta property="og:updated_time" content="2019-05-29T01:15:25.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小记--关于mitmproxy的代理连接被重置的问题">
-<meta name="twitter:description" content="不以物喜 不以己悲">
+<meta name="twitter:description" content="概述在浏览器设置proxy的代理之后，访问网页显示连接被重置，然后查看日志，报错信息如下： 1234567[root@procy ~]# docker logs test_proxyLoading script /code/start_script.pyProxy server listening at http://*:8080172.104.123.101:58074: clientconne">
 
 
 
@@ -375,8 +376,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-27T14:41:38+08:00">
-                2019-05-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-29T09:15:25+08:00">
+                2019-05-29
               </time>
             
           </span>
@@ -420,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  173
                 </span>
               
 
@@ -457,7 +458,15 @@
       
 
       
-        
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在浏览器设置proxy的代理之后，访问网页显示连接被重置，然后查看日志，报错信息如下：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@procy ~]# docker logs test_proxy</span><br><span class="line">Loading script /code/start_script.py</span><br><span class="line">Proxy server listening <span class="meta">at</span> http://*:<span class="number">8080</span></span><br><span class="line"><span class="number">172.104</span><span class="meta">.123</span><span class="meta">.101</span>:<span class="number">58074</span>: clientconnect</span><br><span class="line">Client connection from ::ffff:<span class="number">172.104</span><span class="meta">.123</span><span class="meta">.101</span> killed by block_global</span><br><span class="line"><span class="number">172.104</span><span class="meta">.123</span><span class="meta">.101</span>:<span class="number">58074</span>: Connection killed</span><br><span class="line"><span class="number">172.104</span><span class="meta">.123</span><span class="meta">.101</span>:<span class="number">58074</span>: clientdisconnect</span><br></pre></td></tr></table></figure>
+<p>可以看到 ‘killed by block_global’ 连接被kill掉</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>去官网找到<a href="https://discourse.mitmproxy.org/t/connection-killed-by-block-global-when-trying-to-connect-remotely/1215" target="_blank" rel="noopener">解决办法</a></p>
+<p>启动参数 添加 –set block_global=false 将block_global设为false</p>
+<p>试了一下<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mitmdump --<span class="builtin-name">set</span> <span class="attribute">block_global</span>=<span class="literal">false</span> -s /code/start_script.py</span><br></pre></td></tr></table></figure></p>
+<p>-s 参数是使用启动脚本进行启动</p>
+<p>又恢复正常，至于原因不是很清楚，因为之前一直运行很正常，可能是跟网络有关。</p>
+
       
     </div>
     
@@ -513,6 +522,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mitmproxy/" rel="tag"><i class="fa fa-tag"></i> mitmproxy</a>
+          
+        </div>
       
 
       
@@ -613,8 +628,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -711,6 +735,22 @@ var jiathis_config={
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -756,7 +796,7 @@ setInterval("createtime()",250);
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>小站共
-    <span title="Site words total count">2.5k</span>字
+    <span title="Site words total count">2.7k</span>字
   
 </div>
 

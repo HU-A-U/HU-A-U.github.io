@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="HU&#39;s Blog">
 <meta property="og:description" content="服务器  ssh python@192.168.1.150 ,     JYcxys@3030 因为我们总账系统里只有财务报表的数据，所以目前先帮您填写财务报表的数据后申报，财务报表处理完了会弹出一个页面，可以进去申报剩下的内容 mysql地址  192.168.1.170:3306  连接串： 1&quot;mysql+pymysql://cic_admin:TaBoq,,1234@192.168.1.1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T02:40:36.891Z">
+<meta property="og:updated_time" content="2019-05-31T07:54:38.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工作中的环境参数(个人使用)">
 <meta name="twitter:description" content="服务器  ssh python@192.168.1.150 ,     JYcxys@3030 因为我们总账系统里只有财务报表的数据，所以目前先帮您填写财务报表的数据后申报，财务报表处理完了会弹出一个页面，可以进去申报剩下的内容 mysql地址  192.168.1.170:3306  连接串： 1&quot;mysql+pymysql://cic_admin:TaBoq,,1234@192.168.1.1">
@@ -125,7 +125,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -376,8 +376,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-28T10:40:36+08:00">
-                2019-05-28
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-31T15:54:38+08:00">
+                2019-05-31
               </time>
             
           </span>
@@ -566,6 +566,24 @@
       </div>
     
 
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    胡阿U
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://hu-a-u.com/2019/04/20/workfile/" title="工作中的环境参数(个人使用)">https://hu-a-u.com/2019/04/20/workfile/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
@@ -868,6 +886,8 @@ setInterval("createtime()",250);
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
 
@@ -893,8 +913,6 @@ setInterval("createtime()",250);
 
   
 
-
-  
 
 
 
@@ -934,11 +952,6 @@ setInterval("createtime()",250);
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1463,6 +1476,11 @@ setInterval("createtime()",250);
   <!-- 代码块复制功能 -->
   <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
   <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+  <!-- 图片背景 -->
+  <div class="bg_content">
+    <canvas id="canvas"></canvas>
+  </div>
 
 </body>
 </html>

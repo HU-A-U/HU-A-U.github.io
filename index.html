@@ -123,7 +123,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -1247,8 +1247,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-28T10:40:36+08:00">
-                2019-05-28
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-31T15:54:38+08:00">
+                2019-05-31
               </time>
             
           </span>
@@ -1952,6 +1952,8 @@ setInterval("createtime()",250);
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
 
@@ -1977,8 +1979,6 @@ setInterval("createtime()",250);
 
   
 
-
-  
 
 
 
@@ -2018,11 +2018,6 @@ setInterval("createtime()",250);
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -2543,6 +2538,11 @@ setInterval("createtime()",250);
   <!-- 代码块复制功能 -->
   <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
   <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+  <!-- 图片背景 -->
+  <div class="bg_content">
+    <canvas id="canvas"></canvas>
+  </div>
 
 </body>
 </html>

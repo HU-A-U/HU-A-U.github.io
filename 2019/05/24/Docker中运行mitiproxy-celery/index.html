@@ -104,21 +104,23 @@
 
 
 
-<meta name="description" content="概述本文只是关于在docker中运行mitmproxy和celery的过程； 需求使用mitmproxy做中间人代理获取网站的请求和响应，以及使用celery对截取的请求进行过滤解析后存库(关于mitmproxy和celery请见前面两篇) 使用docker的原因1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到celer">
+<meta name="description" content="概述本文只是关于在docker中运行mitmproxy和celery的过程； 需求使用mitmproxy做中间人代理获取网站的请求和响应，以及使用celery worker 对截取的请求进行过滤解析后存库 使用docker的原因1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到celery==4.3.0rc1版本，同时安装">
 <meta name="keywords" content="python,celery,mitmproxy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker中运行mitiproxy+celery">
 <meta property="og:url" content="https://hu-a-u.com/2019/05/24/Docker中运行mitiproxy-celery/index.html">
 <meta property="og:site_name" content="HU&#39;s Blog">
-<meta property="og:description" content="概述本文只是关于在docker中运行mitmproxy和celery的过程； 需求使用mitmproxy做中间人代理获取网站的请求和响应，以及使用celery对截取的请求进行过滤解析后存库(关于mitmproxy和celery请见前面两篇) 使用docker的原因1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到celer">
+<meta property="og:description" content="概述本文只是关于在docker中运行mitmproxy和celery的过程； 需求使用mitmproxy做中间人代理获取网站的请求和响应，以及使用celery worker 对截取的请求进行过滤解析后存库 使用docker的原因1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到celery==4.3.0rc1版本，同时安装">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://hu-a-u.com/2019/05/24/Docker中运行mitiproxy-celery/daocloud_task.png">
 <meta property="og:image" content="https://hu-a-u.com/2019/05/24/Docker中运行mitiproxy-celery/daocloud_projects.png">
 <meta property="og:image" content="https://hu-a-u.com/2019/05/24/Docker中运行mitiproxy-celery/Docker中运行mitiproxy-celery/Firefox_http_proxy.png">
-<meta property="og:updated_time" content="2019-05-28T02:28:50.399Z">
+<meta property="og:image" content="https://hu-a-u.com/2019/05/24/Docker中运行mitiproxy-celery/Docker中运行mitiproxy-celery/http_proxy_ok.png">
+<meta property="og:image" content="https://hu-a-u.com/2019/05/24/Docker中运行mitiproxy-celery/rabbitMQ.png">
+<meta property="og:updated_time" content="2019-06-17T09:22:05.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker中运行mitiproxy+celery">
-<meta name="twitter:description" content="概述本文只是关于在docker中运行mitmproxy和celery的过程； 需求使用mitmproxy做中间人代理获取网站的请求和响应，以及使用celery对截取的请求进行过滤解析后存库(关于mitmproxy和celery请见前面两篇) 使用docker的原因1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到celer">
+<meta name="twitter:description" content="概述本文只是关于在docker中运行mitmproxy和celery的过程； 需求使用mitmproxy做中间人代理获取网站的请求和响应，以及使用celery worker 对截取的请求进行过滤解析后存库 使用docker的原因1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到celery==4.3.0rc1版本，同时安装">
 <meta name="twitter:image" content="https://hu-a-u.com/2019/05/24/Docker中运行mitiproxy-celery/daocloud_task.png">
 
 
@@ -380,8 +382,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-28T10:28:50+08:00">
-                2019-05-28
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-17T17:22:05+08:00">
+                2019-06-17
               </time>
             
           </span>
@@ -425,7 +427,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.5k
                 </span>
               
 
@@ -441,7 +443,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  6
                 </span>
               
             </div>
@@ -463,9 +465,9 @@
 
       
         <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>本文只是关于在docker中运行mitmproxy和celery的过程；</p>
-<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>使用mitmproxy做中间人代理获取网站的请求和响应，以及使用<br>celery对截取的请求进行过滤解析后存库(关于mitmproxy和celery请见前面两篇)</p>
-<h4 id="使用docker的原因"><a href="#使用docker的原因" class="headerlink" title="使用docker的原因"></a>使用docker的原因</h4><p>1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到celery==4.3.0rc1版本，同时安装mitmproxy和celery成功.<br>2.当我在服务器(ubuntu16.04)上使用虚拟环境安装环境依赖的时候，安装mitmproxy一直安装失败，好像是关于系统编译的一些报错，mitmproxy只支持python3.6以上版本，查询无果，最后放弃。</p>
-<p>使用docker最主要的就是隔离性，轻量化，版本控制，可移植性</p>
+<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>使用mitmproxy做中间人代理获取网站的请求和响应，以及使用<br>celery worker 对截取的请求进行过滤解析后存库</p>
+<h5 id="使用docker的原因"><a href="#使用docker的原因" class="headerlink" title="使用docker的原因"></a>使用docker的原因</h5><p>1.最初的本地开发环境是Windows系统，由于celery的某些版本对Windows不支持，所以会出现不兼容的问题，最后找到celery==4.3.0rc1版本，同时安装mitmproxy和celery成功.<br>2.当我在服务器(ubuntu16.04)上使用虚拟环境安装环境依赖的时候，安装mitmproxy一直安装失败，好像是关于系统编译的一些报错，mitmproxy只支持python3.6以上版本，查询无果，最后放弃。</p>
+<p>使用docker最主要的就是隔离性，轻量化，版本控制，迁移比较方便</p>
 <h4 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h4><p>mitmproxy==4.0.4</p>
 <p>celery==4.3.0rc1</p>
 <h3 id="编写dockerfile"><a href="#编写dockerfile" class="headerlink" title="编写dockerfile"></a>编写dockerfile</h3><p>分别打包两个镜像，一个镜像运行proxy容器，一个镜像运行celery的worker</p>
@@ -476,19 +478,35 @@
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.7</span> </span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> requirements.txt /tmp/requirements.txt</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install -r /tmp/requirements.txt</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir /code</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /code</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . /code</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> docker-entrypoint.sh docker-entrypoint.sh</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod +x docker-entrypoint.sh</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get install libfontconfig</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> /code/docker-entrypoint.sh</span></span><br></pre></td></tr></table></figure>
 <p>使用EXPOSE命令将容器的运行端口8080暴露出来<br>使用CMD命令运行docker-entrypoint.sh启动文件，内容如下:</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>local<span class="regexp">/bin/mi</span>tmdump -s <span class="regexp">/code/</span>start_script.py</span><br></pre></td></tr></table></figure>
-<p>创建镜像，我使用的是daocloud平台打包镜像，比较方便，关联GitHub仓库就可以直接打包，有新的提交就会自动重新打包一个版本</p>
+<p>如果不加 /usr/local/bin/ 路径会找不到 mitmdump</p>
+<h5 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h5><p>我使用的是daocloud平台打包镜像，比较方便，关联GitHub仓库就可以直接打包，有新的提交就会自动重新打包一个版本</p>
 <p>执行日志<br><img src="/2019/05/24/Docker中运行mitiproxy-celery/daocloud_task.png" alt="执行日志"><br>打包的项目<br><img src="/2019/05/24/Docker中运行mitiproxy-celery/daocloud_projects.png" alt="打包记录"></p>
-<p>容器的启动命令是<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery <span class="built_in">run</span> <span class="comment">--name my_proxy -p 8888:8080 -d &lt;image&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>使用 -p 参数进行端口映射，将容器暴露的8080端口映射到宿主机的8888端口，在浏览器中设置代理的时候就设置8888端口<br><img src="Docker中运行mitiproxy-celery/Firefox_http_proxy.png" alt></p>
-<p>查看运行状态是否已经启动<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="variable">@procy</span> ~]<span class="comment"># docker ps -a</span></span><br><span class="line">CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                    NAMES</span><br><span class="line">b5af5afc3d74        <span class="symbol">daocloud.io...:</span>latest   <span class="string">"/bin/sh -c /code/do…"</span>   <span class="number">3</span> seconds ago       Up <span class="number">3</span> seconds        <span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span><span class="symbol">:</span><span class="number">8888</span>-&gt;<span class="number">8080</span>/tcp   my_proxy</span><br></pre></td></tr></table></figure></p>
+<p>拉取打包好的镜像<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull <span class="string">[镜像]</span></span><br></pre></td></tr></table></figure></p>
+<p>启动容器<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery <span class="built_in">run</span> <span class="comment">--name my_proxy -p 8888:8080 -d &lt;镜像名称&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用 -p 参数进行端口映射，将容器暴露的8080端口映射到宿主机的8888端口</p>
+<p>查看运行状态,是否正常启动<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="variable">@procy</span> ~]<span class="comment"># docker ps -a</span></span><br><span class="line">CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                    NAMES</span><br><span class="line">b5af5afc3d74        <span class="symbol">daocloud.io...:</span>latest   <span class="string">"/bin/sh -c /code/do…"</span>   <span class="number">3</span> seconds ago       Up <span class="number">3</span> seconds        <span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span><span class="symbol">:</span><span class="number">8888</span>-&gt;<span class="number">8080</span>/tcp   my_proxy</span><br></pre></td></tr></table></figure></p>
 <p>看到status为up，并且已经映射到8888端口</p>
-<p>查看日志<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@procy ~]<span class="comment"># docker logs my_proxy</span></span><br><span class="line">Loading script <span class="regexp">/code/</span>start_script.py</span><br><span class="line">Proxy server listening at http:<span class="regexp">//</span>*:<span class="number">8080</span></span><br></pre></td></tr></table></figure></p>
-<p>说明已经启动，接下来使用浏览器访问网页，就可以看到日志的输出一大堆，找到你访问的那一条URL就说明代理成功了<br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">192.168.20.1:55422: GET http://addons.g-fox.cn/ntab.gif?c=ntab&amp;t=timing&amp;a=1-g-dials&amp;d=588&amp;f=&amp;r=0.7728733891924365&amp;cid=firefox.com.cn</span></span><br><span class="line"><span class="xml">                 <span class="tag">&lt;&lt; <span class="attr">200</span> <span class="attr">OK</span> <span class="attr">800b</span></span></span></span><br><span class="line"><span class="xml">192.168.20.1:55406: GET http://addons.g-fox.cn/ntab.gif?c=ntab&amp;t=timing&amp;a=1-f-dials&amp;d=592&amp;f=&amp;r=0.25058684833166534&amp;cid=firefox.com.cn</span></span><br><span class="line"><span class="xml">                 <span class="tag">&lt;&lt; <span class="attr">200</span> <span class="attr">OK</span> <span class="attr">800b</span></span></span></span><br><span class="line"><span class="xml">192.168.20.1:55427: GET http://addons.g-fox.cn/ntab.gif?c=ntab&amp;t=timing&amp;a=1-g-sites&amp;d=726&amp;f=&amp;r=0.5929905576913492&amp;cid=firefox.com.cn</span></span><br><span class="line"><span class="xml">                 <span class="tag">&lt;&lt; <span class="attr">200</span> <span class="attr">OK</span> <span class="attr">800b</span></span></span></span><br></pre></td></tr></table></figure></p>
+<p>查看日志,容器内部监听8080端口<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@procy ~]<span class="comment"># docker logs my_proxy</span></span><br><span class="line">Loading script <span class="regexp">/code/</span>start_script.py</span><br><span class="line">Proxy server listening at http:<span class="regexp">//</span>*:<span class="number">8080</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="代理运行成功后设置代理"><a href="#代理运行成功后设置代理" class="headerlink" title="代理运行成功后设置代理"></a>代理运行成功后设置代理</h4><p>在浏览器中设置代理地址，一般使用火狐，设置代理地址为服务的地址，在8888端口<br><img src="Docker中运行mitiproxy-celery/Firefox_http_proxy.png" alt></p>
+<p>随便打开一个网页，可以看到请求地址为所设置的代理地址<br><img src="Docker中运行mitiproxy-celery/http_proxy_ok.png" alt></p>
+<p>使用 docker logs my_proxy<br>看到日志的输出一大堆，找到你访问的那一条URL就说明代理成功了<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">180.165</span><span class="number">.231</span><span class="number">.56</span>:<span class="number">57424</span>: GET http:<span class="comment">//addons.g-fox.cn/ntab.gif?c=ntab&amp;t=timing&amp;a=1-o-idb&amp;d=73&amp;f=&amp;r=0.8194234211953002&amp;cid=firefox.com.cn</span></span><br><span class="line">                   <span class="params">&lt;&lt; <span class="number">200</span> OK <span class="number">800</span>b</span></span><br><span class="line"><span class="params"><span class="number">180.165</span><span class="number">.231</span><span class="number">.56</span>:<span class="number">57426</span>: GET http://addons.g-fox.cn/ntab.gif?c=ntab<span class="variable">&amp;t</span>=timing<span class="variable">&amp;a</span>=<span class="number">1</span>-o-cursor<span class="variable">&amp;d</span>=<span class="number">80</span><span class="variable">&amp;f</span>=<span class="variable">&amp;r</span>=<span class="number">0.9766453266846722</span><span class="variable">&amp;cid</span>=firefox.com.cn</span></span><br><span class="line"><span class="params">                   &lt;&lt; <span class="number">200</span> OK <span class="number">800</span>b</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="celery镜像"><a href="#celery镜像" class="headerlink" title="celery镜像"></a>celery镜像</h4><p>环境依赖与proxy镜像的相同，只是运行的启动命令不同；<br>因为这里的数据解析任务我是分为三个队列去执行，这样异步执行可以减少数据处理的时间，相互独立，失败的任务不会影响到其他的任务<br>1.第一个队列create里的任务只是简单的将mitmproxy传递过来的原始pickle后的请求以及响应的对象暂存到redis中，并设置过期时间，然后异步调用analysis队列<br>2.第二个队列analysis里的任务是解析pickle前的request对象和response对象，获取需要的内容，再异步调用save队列<br>3.第三个队列save主要是将解析后的数据更新到mysql中，以供页面回显。</p>
 <p>celery Dockerfile内容如下：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.7</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> requirements.txt /tmp/requirements.txt</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install -r /tmp/requirements.txt</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir /code</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /code</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . /code</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> docker-entrypoint.sh docker-entrypoint.sh</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod +x docker-entrypoint.sh</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get install libfontconfig</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> C_QUEUE to_create</span><br><span class="line"><span class="keyword">ENV</span> A_QUEUE to_analysis</span><br><span class="line"><span class="keyword">ENV</span> S_QUEUE to_save</span><br><span class="line"><span class="keyword">ENV</span> QUEUE to_create</span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> /code/docker-entrypoint.sh</span></span><br></pre></td></tr></table></figure>
 <p>docker-entrypoint.sh执行文件内容如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$QUEUE</span>"</span> = <span class="string">"<span class="variable">$C_QUEUE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">	celery -A handle_data.celery_app worker -l info -Q to_create --uid 13</span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$QUEUE</span>"</span> = <span class="string">"<span class="variable">$A_QUEUE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">	celery -A handle_data.celery_app worker -l info -Q to_analysis --uid 13</span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$QUEUE</span>"</span> = <span class="string">"<span class="variable">$S_QUEUE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">	celery -A handle_data.celery_app worker -l info -Q to_save --uid 13</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<p>ENV 指定的环境变量</p>
+<p>dockerfile中的 ENV 指定环境变量,通过.sh文件判断启动命令里的参数，to_create,to_analysis,to_save 三个队列，指定到不同的消息队列</p>
+<p>启动命令是<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> --name to_create --link yct_redis:aliyun_redis -e <span class="attribute">QUEUE</span>=to_create -d [镜像名称]</span><br><span class="line">docker <span class="builtin-name">run</span> --name to_analysis --link yct_redis:aliyun_redis -e <span class="attribute">QUEUE</span>=to_analysis -d [镜像名称]</span><br><span class="line">docker <span class="builtin-name">run</span> --name to_save --link yct_redis:aliyun_redis -e <span class="attribute">QUEUE</span>=to_save -d [镜像名称]</span><br></pre></td></tr></table></figure></p>
+<p>–name 启动容器名称</p>
+<p>–link 是关联redis容器，作为数据缓存</p>
+<p>-e 参数后面 指定 QUEUE 为 to_create 队列</p>
+<p>-d 守护进程运行</p>
+<p>启动三个容器，进行数据解析和存库</p>
+<h3 id="迁移到阿里云"><a href="#迁移到阿里云" class="headerlink" title="迁移到阿里云"></a>迁移到阿里云</h3><p>由于客户量增多，需要将服务从我们的服务器扩展到阿里云上, 由于解析后的数据需要放到自己本地的数据库里；</p>
+<p>1.在RabbitMQ上新建一个vhost,存放阿里云代理扔出的任务消息,此处是 newproxy-yuanqu01；</p>
+<p>RabbitMQ是运行阿里云上的另一台服务器，地址为 47.102.218.137:5672<br><img src="/2019/05/24/Docker中运行mitiproxy-celery/rabbitMQ.png" alt></p>
+<p>2.先运行proxy代理，关联到docker redis 容器<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">docker</span> <span class="selector-tag">run</span> <span class="selector-tag">--name</span> <span class="selector-tag">yct_proxy</span> <span class="selector-tag">--link</span> <span class="selector-tag">yct_redis</span><span class="selector-pseudo">:aliyun_redis</span> <span class="selector-tag">-p</span> 8888<span class="selector-pseudo">:8080</span> <span class="selector-tag">-d</span> <span class="selector-attr">[镜像名称]</span></span><br></pre></td></tr></table></figure></p>
+<p>3.运行celery worker，读取到rabbitMQ中的任务消息去执行,进行数据截取，解析<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> --name to_create --link yct_redis:aliyun_redis -e <span class="attribute">QUEUE</span>=to_create -d [镜像名称]</span><br><span class="line">docker <span class="builtin-name">run</span> --name to_analysis --link yct_redis:aliyun_redis -e <span class="attribute">QUEUE</span>=to_analysis -d [镜像名称]</span><br></pre></td></tr></table></figure></p>
+<p>4.由于解析后的数据是要存到我们自己的服务器数据库中，所以就要将数据存储的服务部署到自己的服务器上<br>使用同样的yct_worker镜像，连接到阿里云的RabbitMQ，订阅to_save消息队列里的内容，将数据存储到正式环境数据库中<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> --name to_save --link yct_redis:aliyun_redis -e <span class="attribute">QUEUE</span>=to_save -d [镜像名称]</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -700,7 +718,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -711,7 +729,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -722,7 +740,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -789,7 +807,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用docker的原因"><span class="nav-number">1.2.</span> <span class="nav-text">使用docker的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#版本"><span class="nav-number">1.3.</span> <span class="nav-text">版本</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写dockerfile"><span class="nav-number">2.</span> <span class="nav-text">编写dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#proxy镜像"><span class="nav-number">2.1.</span> <span class="nav-text">proxy镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#celery镜像"><span class="nav-number">2.2.</span> <span class="nav-text">celery镜像</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用docker的原因"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用docker的原因</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#版本"><span class="nav-number">1.2.</span> <span class="nav-text">版本</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写dockerfile"><span class="nav-number">2.</span> <span class="nav-text">编写dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#proxy镜像"><span class="nav-number">2.1.</span> <span class="nav-text">proxy镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建镜像"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建镜像</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理运行成功后设置代理"><span class="nav-number">2.2.</span> <span class="nav-text">代理运行成功后设置代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#celery镜像"><span class="nav-number">2.3.</span> <span class="nav-text">celery镜像</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迁移到阿里云"><span class="nav-number">3.</span> <span class="nav-text">迁移到阿里云</span></a></li></ol></div>
             
 
           </div>
@@ -841,7 +859,7 @@ setInterval("createtime()",250);
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>小站共
-    <span title="Site words total count">2.7k</span>字
+    <span title="Site words total count">4.8k</span>字
   
 </div>
 

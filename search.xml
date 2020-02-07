@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>Pythoy中字符串逆序的几种方法</title>
+      <link href="/2020/02/07/Pythoy%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/"/>
+      <url>/2020/02/07/Pythoy%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="第一种：字符串切片"><a href="#第一种：字符串切片" class="headerlink" title="第一种：字符串切片"></a>第一种：字符串切片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">"hello"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name[::<span class="number">-1</span>]</span><br><span class="line"><span class="string">'olleh'</span></span><br></pre></td></tr></table></figure><h3 id="第二种：列表的reverse-方法"><a href="#第二种：列表的reverse-方法" class="headerlink" title="第二种：列表的reverse()方法"></a>第二种：列表的reverse()方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'abcd'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>li = list(name)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>li.reverse()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">""</span>.join(li)</span><br><span class="line"><span class="string">'dcba'</span></span><br></pre></td></tr></table></figure><p>此处注意，reverse()方法没有返回值，故 “”.join(li.reverse())的写法肯定会报错。</p><p>或者将列表切片反转<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'abcd'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>li = list(name)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">""</span>.join(li[::<span class="number">-1</span>])</span><br><span class="line"><span class="string">'dcba'</span></span><br></pre></td></tr></table></figure></p><h3 id="第三种：使用reduce"><a href="#第三种：使用reduce" class="headerlink" title="第三种：使用reduce()"></a>第三种：使用reduce()</h3><p>在python2中可直接使用reduce函数，在python3中需在functools库里导入。</p><p>reduce函数语法：</p><p>reduce(function, iterable[, initializer])　　</p><ul><li><p>function–函数，有两个参数　　</p></li><li><p>iterable–可迭代对象　　</p></li><li><p>initializer–可选，初始参数</p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x,y)</span>:</span></span><br><span class="line"><span class="meta">... </span>   <span class="keyword">return</span> x + y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>reduce(add,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'abcd'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>reduce(<span class="keyword">lambda</span> x,y:y+x,name)</span><br><span class="line"><span class="string">'dcba'</span></span><br></pre></td></tr></table></figure><h3 id="第四种：使用-python3-内置函数-reversed-函数"><a href="#第四种：使用-python3-内置函数-reversed-函数" class="headerlink" title="第四种：使用 python3 内置函数 reversed()函数"></a>第四种：使用 python3 内置函数 reversed()函数</h3><p>reversed函数返回一个反转的迭代器。</p><p>reversed语法：</p><ul><li><p>reversed(seq)　　</p></li><li><p>seq–要转换的序列，可以是 tuple, string, list 或 range。</p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'1234'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>reversed(name)</span><br><span class="line">&lt;reversed object at <span class="number">0x1096f9668</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">""</span>.join(list(reversed(name)))</span><br><span class="line"><span class="string">'4321'</span></span><br></pre></td></tr></table></figure><h3 id="第五种：使用递归"><a href="#第五种：使用递归" class="headerlink" title="第五种：使用递归"></a>第五种：使用递归</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">"abcd"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(name)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">if</span> len(name) &lt; <span class="number">1</span>:</span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> name</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> func(name[<span class="number">1</span>:]) + name[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>func(name)</span><br><span class="line"><span class="string">'dcba'</span></span><br></pre></td></tr></table></figure><h3 id="第六种：使用栈"><a href="#第六种：使用栈" class="headerlink" title="第六种：使用栈"></a>第六种：使用栈</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'abcd'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>li = list(name) <span class="comment"># 模拟全部入栈</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>res = <span class="string">""</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">while</span>(len(li) &gt; <span class="number">0</span>):</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    res += li.pop() <span class="comment"># 模拟出栈</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>res</span><br><span class="line"><span class="string">'dcba'</span></span><br></pre></td></tr></table></figure><h3 id="第七种：for循环"><a href="#第七种：for循环" class="headerlink" title="第七种：for循环"></a>第七种：for循环</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(name)</span>:</span></span><br><span class="line">    result = <span class="string">""</span></span><br><span class="line">    max_index = len(name)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">for</span> index,value <span class="keyword">in</span> enumerate(name):</span><br><span class="line">        result += name[max_index-index]</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">name = <span class="string">'abcd'</span></span><br><span class="line">result = func(name)</span><br></pre></td></tr></table></figure><h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>此处 enumerate()为python内置函数，用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。用法如下：</p><p>enumerate(sequence, [start=0])</p><ul><li><p>sequence – 一个序列、迭代器或其他支持迭代对象。</p></li><li><p>start – 下标起始位置。</p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>seasons = [<span class="string">'Spring'</span>, <span class="string">'Summer'</span>, <span class="string">'Fall'</span>, <span class="string">'Winter'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(enumerate(seasons))</span><br><span class="line">[(<span class="number">0</span>, <span class="string">'Spring'</span>), (<span class="number">1</span>, <span class="string">'Summer'</span>), (<span class="number">2</span>, <span class="string">'Fall'</span>), (<span class="number">3</span>, <span class="string">'Winter'</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(enumerate(seasons, start=<span class="number">1</span>))       <span class="comment"># 下标从 1 开始</span></span><br><span class="line">[(<span class="number">1</span>, <span class="string">'Spring'</span>), (<span class="number">2</span>, <span class="string">'Summer'</span>), (<span class="number">3</span>, <span class="string">'Fall'</span>), (<span class="number">4</span>, <span class="string">'Winter'</span>)]</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>seq = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i, element <span class="keyword">in</span> enumerate(seq):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">print</span> i, element</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="number">0</span> one</span><br><span class="line"><span class="number">1</span> two</span><br><span class="line"><span class="number">2</span> three</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python之函数装饰器(二)</title>
+      <link href="/2020/02/04/Python%E4%B9%8B%E5%87%BD%E6%95%B0%E8%A3%85%E9%A5%B0%E5%99%A8-%E4%BA%8C/"/>
+      <url>/2020/02/04/Python%E4%B9%8B%E5%87%BD%E6%95%B0%E8%A3%85%E9%A5%B0%E5%99%A8-%E4%BA%8C/</url>
+      
+        <content type="html"><![CDATA[<p>继续上次的进度</p><h4 id="装饰类"><a href="#装饰类" class="headerlink" title="装饰类"></a>装饰类</h4><p>在类中有两种不同的方式使用装饰器，第一个和我们之前做过的函数非常相似:在类的方法上应用。这也是当时引入装饰器的原因之一</p><p>一些常用的装饰器已经内置到python中，像@classmethod @staticmethod @property。  </p><p>下面的Circle 类使用了@classmethod @staticmethod和@property三个装饰器</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python之函数装饰器(一)</title>
       <link href="/2020/02/03/Python%E5%87%BD%E6%95%B0%E8%A3%85%E9%A5%B0%E5%99%A8/"/>
       <url>/2020/02/03/Python%E5%87%BD%E6%95%B0%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
@@ -245,31 +295,6 @@
     
     
     <entry>
-      <title>小记--阿里云pip配置虚拟环境报错</title>
-      <link href="/2019/03/01/%E5%B0%8F%E8%AE%B0--%E9%98%BF%E9%87%8C%E4%BA%91pip%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8A%A5%E9%94%99/"/>
-      <url>/2019/03/01/%E5%B0%8F%E8%AE%B0--%E9%98%BF%E9%87%8C%E4%BA%91pip%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8A%A5%E9%94%99/</url>
-      
-        <content type="html"><![CDATA[<p>今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting</p><p>不支持语言环境，报错如下：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@iZuf6eh47kp5ew16h2mywqZ:~<span class="comment"># sudo pip3 install virtualenv</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/bin/pip3"</span>, line <span class="number">11</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    sys.<span class="keyword">exit</span>(main())</span><br><span class="line">  File <span class="string">"/usr/lib/python3/dist-packages/pip/__init__.py"</span>, line <span class="number">215</span>, <span class="keyword">in</span> main</span><br><span class="line">    locale.setlocale(locale.LC_ALL, <span class="string">''</span>)</span><br><span class="line">  File <span class="string">"/usr/lib/python3.5/locale.py"</span>, line <span class="number">594</span>, <span class="keyword">in</span> setlocale</span><br><span class="line">    return _setlocale(category, locale)</span><br><span class="line">locale.Error: unsupported locale setting</span><br></pre></td></tr></table></figure><p>解决办法很简单，设置语言就好了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LC_ALL=&quot;en_US.UTF-8&quot;</span><br><span class="line">export LC_CTYPE=&quot;en_US.UTF-8&quot;</span><br></pre></td></tr></table></figure><p>执行上面这两句就OK了，后面就可以继续pip安装了。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> python </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ubuntu下安装python3</title>
       <link href="/2019/03/01/ubuntu%E4%B8%8Bpython3%E7%9A%84%E5%AE%89%E8%A3%85/"/>
       <url>/2019/03/01/ubuntu%E4%B8%8Bpython3%E7%9A%84%E5%AE%89%E8%A3%85/</url>
@@ -287,6 +312,31 @@
         <tags>
             
             <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小记--阿里云pip配置虚拟环境报错</title>
+      <link href="/2019/03/01/%E5%B0%8F%E8%AE%B0--%E9%98%BF%E9%87%8C%E4%BA%91pip%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8A%A5%E9%94%99/"/>
+      <url>/2019/03/01/%E5%B0%8F%E8%AE%B0--%E9%98%BF%E9%87%8C%E4%BA%91pip%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8A%A5%E9%94%99/</url>
+      
+        <content type="html"><![CDATA[<p>今天在阿里云上使用pip3安装虚拟环境的时候，出现了一个错误locale.Error: unsupported locale setting</p><p>不支持语言环境，报错如下：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@iZuf6eh47kp5ew16h2mywqZ:~<span class="comment"># sudo pip3 install virtualenv</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/bin/pip3"</span>, line <span class="number">11</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    sys.<span class="keyword">exit</span>(main())</span><br><span class="line">  File <span class="string">"/usr/lib/python3/dist-packages/pip/__init__.py"</span>, line <span class="number">215</span>, <span class="keyword">in</span> main</span><br><span class="line">    locale.setlocale(locale.LC_ALL, <span class="string">''</span>)</span><br><span class="line">  File <span class="string">"/usr/lib/python3.5/locale.py"</span>, line <span class="number">594</span>, <span class="keyword">in</span> setlocale</span><br><span class="line">    return _setlocale(category, locale)</span><br><span class="line">locale.Error: unsupported locale setting</span><br></pre></td></tr></table></figure><p>解决办法很简单，设置语言就好了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LC_ALL=&quot;en_US.UTF-8&quot;</span><br><span class="line">export LC_CTYPE=&quot;en_US.UTF-8&quot;</span><br></pre></td></tr></table></figure><p>执行上面这两句就OK了，后面就可以继续pip安装了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
             
         </tags>
       
